@@ -1,14 +1,18 @@
-<!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Voting Index</title>
+    
+    <link rel="stylesheet" href="{% static "polls/style.css" %}">
 </head>
 <body>
 {% if latest_question_list %}
     <ul>
         {% for question in latest_question_list %}
-       <li><a href="{% url  'polls:detail' %}">{{question.question_text}}</a></li>
+        {% comment %} <li>{{question.id}}</li> {% endcomment %}
+       <li><a href="{% url  'polls:detail'   question.id %}">{{question.question_text}}</a></li>
+         
         {% endfor %}
     </ul>
 {% else %}
